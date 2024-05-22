@@ -1,0 +1,69 @@
+﻿<Window
+    x:Class="StoreManagement.App.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:StoreManagement.App"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="clr-namespace:StoreManagement.App.ViewModels"
+    Title="{Binding Title}"
+    Width="800"
+    Height="450"
+    mc:Ignorable="d">
+
+    <Window.DataContext>
+        <vm:MainViewModel />
+    </Window.DataContext>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <!--#region Storages-->
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.6*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <StackPanel Margin="10,0" Orientation="Vertical">
+                <Label Content="Products list" />
+                <ComboBox
+                    DisplayMemberPath="Label"
+                    ItemsSource="{Binding Products}"
+                    SelectedIndex="0"
+                    SelectedValue="{Binding Storage.ProductId, Mode=TwoWay}"
+                    SelectedValuePath="Id" />
+
+                <Label Content="Quantity" />
+                <TextBox Text="{Binding Storage.Quantity}" />
+
+                <Button
+                    Margin="0,15"
+                    Command="{Binding SaveStorageCommand}"
+                    Content="Save" />
+            </StackPanel>
+
+            <DataGrid
+                Grid.Row="1"
+                Margin="10,5"
+                AutoGenerateColumns="False"
+                IsReadOnly="True"
+                ItemsSource="{Binding Storages}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Id}" Header="N°" />
+                    <DataGridTextColumn Binding="{Binding Created}" Header="Last Updated" />
+                    <DataGridTextColumn Binding="{Binding Quantity}" Header="Quantity" />
+                    <DataGridCheckBoxColumn Binding="{Binding IsActive}" Header="State" />
+                    <DataGridCheckBoxColumn Binding="{Binding Product.Label}" Header="Product" />
+                </DataGrid.Columns>
+            </DataGrid>
+
+        </Grid>
+        <!--#endregion-->
+
+    </Grid>
+</Window>
