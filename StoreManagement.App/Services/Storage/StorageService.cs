@@ -34,7 +34,7 @@ namespace StoreManagement.App.Services.Storage
         {
             using ApplicationDbContext context = new();
 
-            var data = await context.Storages.ToListAsync();
+            var data = await context.Storages.Include(x => x.Product).ToListAsync();
 
             return data.ToFrozenSet();
         }

@@ -30,7 +30,7 @@
             </Grid.RowDefinitions>
 
             <StackPanel Margin="10,0" Orientation="Vertical">
-                <Label Content="Products list" />
+                <Label Content="Storages list" />
                 <ComboBox
                     DisplayMemberPath="Label"
                     ItemsSource="{Binding Products}"
@@ -58,12 +58,85 @@
                     <DataGridTextColumn Binding="{Binding Created}" Header="Last Updated" />
                     <DataGridTextColumn Binding="{Binding Quantity}" Header="Quantity" />
                     <DataGridCheckBoxColumn Binding="{Binding IsActive}" Header="State" />
-                    <DataGridCheckBoxColumn Binding="{Binding Product.Label}" Header="Product" />
+                    <DataGridTextColumn Binding="{Binding Product.Label}" Header="Product" />
                 </DataGrid.Columns>
             </DataGrid>
 
         </Grid>
         <!--#endregion-->
 
+        <!--#region Product-->
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.6*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <StackPanel Margin="10,0" Orientation="Vertical">
+                <Label Content="Categories list" />
+                <ComboBox
+                    DisplayMemberPath="Name"
+                    ItemsSource="{Binding Path=ProductCategories}"
+                    SelectedIndex="0"
+                    SelectedValue="{Binding Product.CategoryId, Mode=TwoWay}"
+                    SelectedValuePath="Id" />
+
+                <Label Content="Label" />
+                <TextBox Text="{Binding Product.Label}" />
+
+                <Button
+                    Margin="0,15"
+                    Command="{Binding SaveProductCommand}"
+                    Content="Save" />
+            </StackPanel>
+
+            <DataGrid
+                Grid.Row="1"
+                Margin="10,5"
+                AutoGenerateColumns="False"
+                IsReadOnly="True"
+                ItemsSource="{Binding Products}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Id}" Header="N°" />
+                    <DataGridTextColumn Binding="{Binding Label}" Header="Label" />
+                    <DataGridTextColumn Binding="{Binding ExpiryDate}" Header="Expiry Date" />
+                    <DataGridTextColumn Binding="{Binding Category.Name}" Header="Category" />
+                </DataGrid.Columns>
+            </DataGrid>
+
+        </Grid>
+        <!--#endregion-->
+
+        <!--#region Product-->
+        <Grid Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.4*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <StackPanel Margin="15,0" Orientation="Vertical">
+                <Label Content="Name" />
+                <TextBox Text="{Binding Category.Name}" />
+
+                <Button
+                    Margin="0,15"
+                    Command="{Binding SaveCategoryCommand}"
+                    Content="Save" />
+            </StackPanel>
+
+            <DataGrid
+                Grid.Row="1"
+                Margin="15,5"
+                AutoGenerateColumns="False"
+                IsReadOnly="True"
+                ItemsSource="{Binding ProductCategories}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Id}" Header="N°" />
+                    <DataGridTextColumn Binding="{Binding Name}" Header="Label" />
+                </DataGrid.Columns>
+            </DataGrid>
+
+        </Grid>
+        <!--#endregion-->
     </Grid>
 </Window>
