@@ -52,13 +52,43 @@
                 Margin="10,5"
                 AutoGenerateColumns="False"
                 IsReadOnly="True"
-                ItemsSource="{Binding Storages}">
+                ItemsSource="{Binding Storages}"
+                SelectedItem="{Binding SelectedStorage}">
+
+                <DataGrid.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem
+                            Command="{Binding DelatilStorageCommand}"
+                            CommandParameter="{Binding SelectedStorage}"
+                            Header="Detail" />
+                        <MenuItem
+                            Command="{Binding DeleteStorageCommand}"
+                            CommandParameter="{Binding SelectedStorage}"
+                            Header="Delete" />
+                    </ContextMenu>
+                </DataGrid.ContextMenu>
+
                 <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding Id}" Header="N°" />
-                    <DataGridTextColumn Binding="{Binding Created}" Header="Last Updated" />
-                    <DataGridTextColumn Binding="{Binding Quantity}" Header="Quantity" />
-                    <DataGridCheckBoxColumn Binding="{Binding IsActive}" Header="State" />
-                    <DataGridTextColumn Binding="{Binding Product.Label}" Header="Product" />
+                    <DataGridTextColumn
+                        Width="0.1*"
+                        Binding="{Binding Id}"
+                        Header="N°" />
+                    <DataGridTextColumn
+                        Width="0.2*"
+                        Binding="{Binding Created, StringFormat='dd/MM/yyyy'}"
+                        Header="Last Updated" />
+                    <DataGridTextColumn
+                        Width="0.1*"
+                        Binding="{Binding Quantity}"
+                        Header="Quantity" />
+                    <DataGridCheckBoxColumn
+                        Width="0.1*"
+                        Binding="{Binding IsActive}"
+                        Header="State" />
+                    <DataGridTextColumn
+                        Width="0.2*"
+                        Binding="{Binding Product.Label}"
+                        Header="Product" />
                 </DataGrid.Columns>
             </DataGrid>
 
@@ -68,7 +98,7 @@
         <!--#region Product-->
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="0.6*" />
+                <RowDefinition Height="0.8*" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
@@ -84,6 +114,9 @@
                 <Label Content="Label" />
                 <TextBox Text="{Binding Product.Label}" />
 
+                <Label Content="Expiry Date" />
+                <DatePicker SelectedDate="{Binding Product.ExpiryDate}" SelectedDateFormat="Short" />
+
                 <Button
                     Margin="0,15"
                     Command="{Binding SaveProductCommand}"
@@ -95,12 +128,39 @@
                 Margin="10,5"
                 AutoGenerateColumns="False"
                 IsReadOnly="True"
-                ItemsSource="{Binding Products}">
+                ItemsSource="{Binding Products}"
+                SelectedItem="{Binding SelectedProduct}">
+
+                <DataGrid.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem
+                            Command="{Binding DetailProductCommand}"
+                            CommandParameter="{Binding SelectedProduct}"
+                            Header="Detail" />
+                        <MenuItem
+                            Command="{Binding DeleteProductCommand}"
+                            CommandParameter="{Binding SelectedProduct}"
+                            Header="Delete" />
+                    </ContextMenu>
+                </DataGrid.ContextMenu>
+
                 <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding Id}" Header="N°" />
-                    <DataGridTextColumn Binding="{Binding Label}" Header="Label" />
-                    <DataGridTextColumn Binding="{Binding ExpiryDate}" Header="Expiry Date" />
-                    <DataGridTextColumn Binding="{Binding Category.Name}" Header="Category" />
+                    <DataGridTextColumn
+                        Width="0.1*"
+                        Binding="{Binding Id}"
+                        Header="N°" />
+                    <DataGridTextColumn
+                        Width="0.3*"
+                        Binding="{Binding Label}"
+                        Header="Label" />
+                    <DataGridTextColumn
+                        Width="0.2*"
+                        Binding="{Binding ExpiryDate, StringFormat='dd/MM/yyyy'}"
+                        Header="Expiry Date" />
+                    <DataGridTextColumn
+                        Width="0.2*"
+                        Binding="{Binding Category.Name}"
+                        Header="Category" />
                 </DataGrid.Columns>
             </DataGrid>
 
@@ -129,13 +189,32 @@
                 Margin="15,5"
                 AutoGenerateColumns="False"
                 IsReadOnly="True"
-                ItemsSource="{Binding ProductCategories}">
+                ItemsSource="{Binding ProductCategories}"
+                SelectedItem="{Binding SelectedCategory}">
+                <DataGrid.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem
+                            Command="{Binding DetailCategoryCommand}"
+                            CommandParameter="{Binding SelectedCategory}"
+                            Header="Detail" />
+                        <MenuItem
+                            Command="{Binding DeleteCategoryCommand}"
+                            CommandParameter="{Binding SelectedCategory}"
+                            Header="Delete" />
+                    </ContextMenu>
+                </DataGrid.ContextMenu>
+
                 <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding Id}" Header="N°" />
-                    <DataGridTextColumn Binding="{Binding Name}" Header="Label" />
+                    <DataGridTextColumn
+                        Width="0.1*"
+                        Binding="{Binding Id}"
+                        Header="N°" />
+                    <DataGridTextColumn
+                        Width="0.5*"
+                        Binding="{Binding Name}"
+                        Header="Label" />
                 </DataGrid.Columns>
             </DataGrid>
-
         </Grid>
         <!--#endregion-->
     </Grid>
