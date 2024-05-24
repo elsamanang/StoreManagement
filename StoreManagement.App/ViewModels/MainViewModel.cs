@@ -36,6 +36,15 @@ namespace StoreManagement.App.ViewModels
         private NewProductCategory? _category;
 
         [ObservableProperty]
+        private ProductCategory? _selectedCategory;
+
+        [ObservableProperty]
+        private Product? _selectedProduct;
+
+        [ObservableProperty]
+        private Storage? _selectedStorage;
+
+        [ObservableProperty]
         private NewProduct? _product;
 
         public MainViewModel()
@@ -59,6 +68,9 @@ namespace StoreManagement.App.ViewModels
             Storage = new();
             Category = new();
             Product = new();
+            SelectedCategory = new() { Name=""};
+            SelectedProduct = new() { Label="", ExpiryDate = DateTime.Now};
+            SelectedStorage = new();
 
             var storages = await _storageService.GetActiveAsync();
             var categories = await _productCategoryService.GetProductCategories();
@@ -115,7 +127,7 @@ namespace StoreManagement.App.ViewModels
                 MessageBox.Show(exception.Message + "\n" + exception?.InnerException?.Message + "\n" + exception?.InnerException?.StackTrace, "Smart-Storage", MessageBoxButtons.OK);
             }
         }
-        
+
         [RelayCommand]
         public async Task SaveCategory()
         {
@@ -137,5 +149,130 @@ namespace StoreManagement.App.ViewModels
             }
         }
 
+        [RelayCommand]
+        public async Task DeleteCategory(ProductCategory item)
+        {
+            try
+            {
+                IsBusy = true;
+
+                var isDelete = await _productCategoryService.DeleteProductCategory(item.Id);
+                if (isDelete)
+                {
+                    MessageBox.Show($"Deleted category {item.Id} \n\n Name : {item.Name}");
+                }
+
+                await OnInitializeAsync();
+
+                IsBusy = !IsBusy;
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message + "\n" + exception?.InnerException?.Message + "\n" + exception?.InnerException?.StackTrace, "Smart-Storage", MessageBoxButtons.OK);
+            }
+
+        }
+
+        [RelayCommand]
+        public async Task DeleteProduct(Product item)
+        {
+            try
+            {
+                IsBusy = true;
+
+                var isDeleted = await _productService.DeleteProduct(item.Id);
+                if (isDeleted)
+                {
+                    MessageBox.Show($"Delete product {item.Id} \n\n Name : {item.Label} \n Category : {item.Category?.Name} \n Expiry date : {item.ExpiryDate}");
+                }
+
+                await OnInitializeAsync();
+
+                IsBusy = !IsBusy;
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message + "\n" + exception?.InnerException?.Message + "\n" + exception?.InnerException?.StackTrace, "Smart-Storage", MessageBoxButtons.OK);
+            }
+
+        }
+
+        [RelayCommand]
+        public async Task DeleteStorage(Storage item)
+        {
+            try
+            {
+                IsBusy = true;
+
+                var isDeleted = await _storageService.DeleteAsync(item.Id);
+                if (isDeleted)
+                {
+                    MessageBox.Show($"Delete storage {item.Id} \n\n Quantity : {item.Quantity} \n Product : {item.Product?.Label} \n Create at {item.Created}");
+                }
+
+                await OnInitializeAsync();
+
+                IsBusy = !IsBusy;
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message + "\n" + exception?.InnerException?.Message + "\n" + exception?.InnerException?.StackTrace, "Smart-Storage", MessageBoxButtons.OK);
+            }
+
+        }
+
+        [RelayCommand]
+        public async Task DetailCategory(ProductCategory item)
+        {
+            try
+            {
+                IsBusy = true;
+
+                MessageBox.Show($"Detail category {item.Id} \n\n Name : {item.Name}");
+
+                IsBusy = !IsBusy;
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message + "\n" + exception?.InnerException?.Message + "\n" + exception?.InnerException?.StackTrace, "Smart-Storage", MessageBoxButtons.OK);
+            }
+
+        }
+
+        [RelayCommand]
+        public async Task DetailProduct(Product item)
+        {
+            try
+            {
+                IsBusy = true;
+
+                MessageBox.Show($"Detail product {item.Id} \n\n Name : {item.Label} \n Category : {item.Category.Name} \n Expiry date : {item.ExpiryDate}");
+
+                IsBusy = !IsBusy;
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message + "\n" + exception?.InnerException?.Message + "\n" + exception?.InnerException?.StackTrace, "Smart-Storage", MessageBoxButtons.OK);
+            }
+
+        }
+
+        [RelayCommand]
+        public async Task DelatilStorage(Storage item)
+        {
+            try
+            {
+                IsBusy = true;
+
+                MessageBox.Show($"Detail storage {item.Id} \n\n Quantity : {item.Quantity} \n Product : {item.Product?.Label} \n Create at {item.Created}");
+
+                IsBusy = !IsBusy;
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message + "\n" + exception?.InnerException?.Message + "\n" + exception?.InnerException?.StackTrace, "Smart-Storage", MessageBoxButtons.OK);
+            }
+
+        }
     }
 }
