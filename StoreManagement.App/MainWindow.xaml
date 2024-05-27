@@ -15,6 +15,76 @@
         <vm:MainViewModel />
     </Window.DataContext>
 
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Padding" Value="5" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Width" Value="120" />
+            <Setter Property="Height" Value="30" />
+            <Setter Property="Background" Value="#00495c" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="3" />
+                </Style>
+            </Style.Resources>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Padding" Value="2" />
+            <Setter Property="Margin" Value="2,1" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Height" Value="30" />
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="3" />
+                </Style>
+            </Style.Resources>
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="Margin" Value="2,1" />
+            <Setter Property="Padding" Value="2" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Height" Value="30" />
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="3" />
+                </Style>
+                <Style TargetType="ComboBoxItem">
+                    <Setter Property="Padding" Value="2" />
+                    <Setter Property="Height" Value="30" />
+                </Style>
+            </Style.Resources>
+        </Style>
+        <Style TargetType="DataGrid">
+            <Setter Property="Background" Value="Transparent" />
+            <Style.Resources>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="Background" Value="#00495c" />
+                    <Setter Property="Foreground" Value="White" />
+                    <Setter Property="FontWeight" Value="Bold" />
+                    <Setter Property="Padding" Value="2" />
+                    <Setter Property="Height" Value="30" />
+                </Style>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="3" />
+                </Style>
+                <Style TargetType="DataGridRowHeader">
+                    <Setter Property="Width" Value="0" />
+                </Style>
+                <Style TargetType="DataGridCell">
+                    <Setter Property="Padding" Value="2" />
+                    <Setter Property="Height" Value="30" />
+                    <Setter Property="VerticalAlignment" Value="Center" />
+                    <Setter Property="BorderThickness" Value="0" />
+                    <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+                </Style>
+            </Style.Resources>
+        </Style>
+    </Window.Resources>
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
@@ -25,7 +95,7 @@
         <!--#region Storages-->
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="0.6*" />
+                <RowDefinition Height="0.7*" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
@@ -98,7 +168,7 @@
         <!--#region Product-->
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="0.8*" />
+                <RowDefinition Height="0.7*" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
@@ -167,10 +237,10 @@
         </Grid>
         <!--#endregion-->
 
-        <!--#region Product-->
+        <!--#region ProductCategory-->
         <Grid Grid.Column="2">
             <Grid.RowDefinitions>
-                <RowDefinition Height="0.4*" />
+                <RowDefinition Height="0.7*" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
