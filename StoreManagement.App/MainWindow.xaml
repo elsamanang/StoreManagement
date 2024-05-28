@@ -29,7 +29,6 @@
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter Property="Background" Value="#003a49" />
-                    <Setter Property="Foreground" Value="Red" />
                 </Trigger>
             </Style.Triggers>
             <Style.Resources>
@@ -77,6 +76,7 @@
         </Style>
         <Style TargetType="DataGrid">
             <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
             <Style.Resources>
                 <Style TargetType="DataGridColumnHeader">
                     <Setter Property="Background" Value="#00495c" />
@@ -98,10 +98,10 @@
                     <Setter Property="BorderThickness" Value="0" />
                     <Setter Property="FocusVisualStyle" Value="{x:Null}" />
                 </Style>
+                <Style TargetType="DataGridRow" />
             </Style.Resources>
         </Style>
     </Window.Resources>
-
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
@@ -117,6 +117,14 @@
             </Grid.RowDefinitions>
 
             <StackPanel Margin="10,0" Orientation="Vertical">
+                <TextBlock
+                    Margin="0,5"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="20"
+                    FontWeight="ExtraBold"
+                    Foreground="#00495c"
+                    Text="Stores" />
                 <Label Content="Storages list" />
                 <ComboBox
                     DisplayMemberPath="Label"
@@ -190,6 +198,14 @@
             </Grid.RowDefinitions>
 
             <StackPanel Margin="10,0" Orientation="Vertical">
+                <TextBlock
+                    Margin="0,5"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="20"
+                    FontWeight="ExtraBold"
+                    Foreground="#00495c"
+                    Text="Products" />
                 <Label Content="Categories list" />
                 <ComboBox
                     DisplayMemberPath="Name"
@@ -202,7 +218,10 @@
                 <TextBox Text="{Binding Product.Label}" />
 
                 <Label Content="Expiry Date" />
-                <DatePicker SelectedDate="{Binding Product.ExpiryDate}" SelectedDateFormat="Short" />
+                <DatePicker
+                    SelectedDate="{Binding Product.ExpiryDate}"
+                    SelectedDateFormat="Short"
+                    Text="{Binding DefaultDate}" />
 
                 <Button
                     Margin="0,15"
@@ -262,6 +281,14 @@
             </Grid.RowDefinitions>
 
             <StackPanel Margin="15,0" Orientation="Vertical">
+                <TextBlock
+                    Margin="0,5"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="20"
+                    FontWeight="ExtraBold"
+                    Foreground="#00495c"
+                    Text="Product Categories" />
                 <Label Content="Name" />
                 <TextBox Text="{Binding Category.Name}" />
 

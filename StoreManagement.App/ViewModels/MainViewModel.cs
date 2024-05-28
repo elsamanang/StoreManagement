@@ -24,6 +24,9 @@ namespace StoreManagement.App.ViewModels
         private ObservableCollection<Product>? _products;
 
         [ObservableProperty]
+        private string _defaultDate = DateOnly.FromDateTime(DateTime.Now).ToString();
+
+        [ObservableProperty]
         private ObservableCollection<ProductCategory>? productCategories;
 
         [ObservableProperty]
@@ -68,9 +71,11 @@ namespace StoreManagement.App.ViewModels
             Storage = new();
             Category = new();
             Product = new();
-            SelectedCategory = new() { Name=""};
-            SelectedProduct = new() { Label="", ExpiryDate = DateTime.Now};
+            SelectedCategory = new() { Name = "" };
+            SelectedProduct = new() { Label = "", ExpiryDate = DateTime.Now };
             SelectedStorage = new();
+
+            DefaultDate = DateOnly.FromDateTime(DateTime.Now).ToString();
 
             var storages = await _storageService.GetActiveAsync();
             var categories = await _productCategoryService.GetProductCategories();
