@@ -88,6 +88,12 @@ namespace StoreManagement.App.ViewModels
             IsBusy = !IsBusy;
         }
 
+        [RelayCommand]
+        public void StoreNavigate()
+        {
+            
+        }
+
 
         [RelayCommand]
         public async Task SaveStorage()

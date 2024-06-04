@@ -206,6 +206,7 @@
                     FontWeight="ExtraBold"
                     Foreground="#00495c"
                     Text="Products" />
+                <Button Content="Voir" />
                 <Label Content="Categories list" />
                 <ComboBox
                     DisplayMemberPath="Name"
